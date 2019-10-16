@@ -4,38 +4,49 @@ const shopApi = require('../models/shop.js')
 
 const shopRouter = express.Router()
 
+shopRouter.get('/shop/new', (req,res) => {
+  res.render('createShop')
+})
+
+shopRouter.get('/shop/edit/:id', (req,res) => {
+  shopApi.getOneShop(req.params.id)
+  .then((shop) => {
+    res.render('editShop', {shop})
+  })
+})
+
 shopRouter.get('/shop', (req, res) => {
   shopApi.getAllShops()
   .then((shops) => {
-    res.json(shops)
+    res.render('allShops', {shops})
   })
 })
 
 shopRouter.post('/shop', (req, res) => {
   shopApi.create(req.body)
-  .then((newShop) => {
-    res.json(newShop)
+  .then(() => {
+    res.redirect('/shop')
   })
 })
 
 shopRouter.get('/shop/:id', (req, res) => {
   shopApi.getOneShop(req.params.id)
   .then((shop) => {
-    res.json(shop)
+    res.render('oneShop', {shop})
   })
 })
 
 shopRouter.put('/shop/:id', (req, res) => {
   shopApi.update(req.params.id, req.body)
-  .then((updated) => {
-    res.send(updated)
+  .then(() => {
+    res.redirect(`/shop/${req.params.id}`)
   })
 })
 
 shopRouter.delete('/shop/:id', (req, res) => {
   shopApi.remove(req.params.id)
-  .then((deleted) => {
-    res.send(deleted)
+  .then(() => {
+    res.redirect('/shop')
   })
 })
 

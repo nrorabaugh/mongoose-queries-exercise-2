@@ -1,0 +1,14 @@
+<h1>All Shops</h1>
+
+<a href="/shop/new">
+    <button>
+        Add New Shop
+    </button>
+</a>
+<ol>
+{{#each shops}}
+    <a href="/shop/{{_id}}"><h2>{{name}}</h2></a>
+    <p>This store has {{employees}} employees.</p>
+    <p>Store is open, true or false? {{currentlyOpen}}</p>
+{{/each}}
+</ol>

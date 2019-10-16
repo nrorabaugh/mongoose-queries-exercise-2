@@ -1,0 +1,8 @@
+<h1>Edit {{shop.name}}</h1>
+
+<form action="/shop/{{shop._id}}?_method=PUT", method="POST">
+    <input type="text" name="name" value="{{shop.name}}"/>
+    <input type="number" name="employees" value="{{shop.employees}}"/>
+    <input type="boolean" name="currentlyOpen" value="{{shop.currentlyOpen}}"/>
+    <input type="submit" value="Update Shop"/>
+</form>

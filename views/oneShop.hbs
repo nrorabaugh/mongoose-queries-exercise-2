@@ -1,0 +1,13 @@
+<h1>{{shop.name}}</h1>
+<p>Store has {{shop.employees}} employees.</p>
+<p>Store is open, true or false? {{shop.currentlyOpen}}</p>
+
+<a href="/shop/edit/{{shop._id}}">
+    <button>
+        Edit
+    </button>
+</a>
+
+<form action="/shop/{{shop._id}}?_method=DELETE" method="POST">
+<input type="submit" value="Delete"/>
+</form>
